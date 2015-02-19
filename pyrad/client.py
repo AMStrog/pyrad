@@ -28,7 +28,7 @@ class Client(host.Host):
     :ivar timeout: number of seconds to wait for an answer
     :type timeout: integer
     """
-    def __init__(self, server, authport=1812, acctport=1813,
+    def __init__(self, server, retries=3, timeout=5, authport=1812, acctport=1813,
             secret=six.b(''), dict=None):
 
         """Constructor.
@@ -49,8 +49,8 @@ class Client(host.Host):
         self.server = server
         self.secret = secret
         self._socket = None
-        self.retries = 3
-        self.timeout = 5
+        self.retries = retries
+        self.timeout = timeout
 
     def bind(self, addr):
         """Bind socket to an address.
